@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Desiplines</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @desiplines.each do |desipline| %>
+      <tr>
+        <td><%= desipline.name %></td>
+        <td><%= link_to 'Show', desipline %></td>
+        <td><%= link_to 'Edit', edit_desipline_path(desipline) %></td>
+        <td><%= link_to 'Destroy', desipline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Desipline', new_desipline_path %>
