@@ -23,38 +23,26 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new(course_params)
 
-    respond_to do |format|
       if @course.save
-        format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
-        format.json { render :show, status: :created, location: @course }
+        redirect_to courses_path
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
   end
 
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
-    respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
-        format.json { render :show, status: :ok, location: @course }
+        redirect_to course_path(@course)
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
+        render :edit
       end
-    end
   end
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
     @course.destroy
-
-    respond_to do |format|
-      format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to courses_path
   end
 
   private
@@ -65,6 +53,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:name)
+      params.require(:course).permit(:name, :duration)
     end
 end

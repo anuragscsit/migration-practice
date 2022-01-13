@@ -1,0 +1,11 @@
+<%= form_with(model: @semester) do |form| %>
+  
+  <div class="field">
+    <%= form.label :sem %>
+    <%= form.text_field :sem %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
